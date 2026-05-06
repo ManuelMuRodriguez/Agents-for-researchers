@@ -16,6 +16,17 @@ Convierte esta función de R a Python usando numpy/pandas donde sea equivalente
 Explícame este script línea a línea como si no supiera [MATLAB/R/Python]
 ```
 
+### Ejercicio guiado — invernadero.m → Python
+
+Abre `invernadero.m` y escribe este prompt en el Chat:
+
+```
+Traduce este script de MATLAB a Python 3.
+Usa numpy para los cálculos numéricos, pandas para guardar el CSV
+y matplotlib para todas las gráficas.
+Mantén la misma estructura de secciones y los mismos comentarios.
+```
+
 ---
 
 ## Documentación
