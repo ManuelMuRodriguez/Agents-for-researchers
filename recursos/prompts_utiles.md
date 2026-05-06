@@ -4,6 +4,28 @@ Colección de prompts probados para usar con GitHub Copilot en VS Code.
 
 ---
 
+## Entender un proyecto existente
+
+Antes de tocar nada, pide a Copilot que te oriente. Especialmente útil cuando el proyecto tiene muchos archivos o lleva tiempo sin tocarse.
+
+```
+@workspace Explícame qué hace este proyecto: qué problema resuelve, cómo está organizado y cuáles son los archivos más importantes.
+```
+```
+@workspace ¿Cuál es el flujo principal del código? ¿Por dónde empieza la ejecución y qué pasos sigue?
+```
+```
+@workspace Tengo que modificar la parte que calcula [X]. ¿En qué archivos está esa lógica y qué debería tener en cuenta antes de cambiarla?
+```
+```
+@workspace ¿Qué dependencias externas usa este proyecto y para qué sirve cada una?
+```
+```
+@workspace Explícame este archivo como si fuera la primera vez que lo veo. ¿Qué hace, por qué existe y cómo encaja con el resto del proyecto?
+```
+
+---
+
 ## Traducción de código
 
 ```
