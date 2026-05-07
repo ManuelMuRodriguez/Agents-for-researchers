@@ -1,3 +1,6 @@
+# Infraestructura — no necesaria para los participantes
+docker-compose.yml
+
 # Archivos auxiliares generados por LaTeX
 *.aux
 *.log
@@ -13,7 +16,7 @@
 *.nav
 *.snm
 *.vrb
+*.spl
 
-# El PDF sí se sube (resultado final)
-# Si prefieres no subirlo, descomenta la línea siguiente:
-# *.pdf
+# PDF generado
+*.pdf
