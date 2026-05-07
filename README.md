@@ -4,15 +4,15 @@
 
 # 🤖 GitHub Copilot para Investigadores
 
-> Curso práctico de 45 minutos para aprender a usar la IA como agente dentro de Visual Studio Code.
+> Curso práctico de ~60 minutos para aprender a usar la IA como agente dentro de Visual Studio Code.
 
 ---
 
 ## 📋 Descripción
 
-Este repositorio contiene todos los materiales del curso **"GitHub Copilot para Investigadores"**: guion del profesor, guía del estudiante, ejemplos de código y recursos de referencia.
+Este repositorio contiene todos los materiales del curso **"GitHub Copilot para Investigadores"**: guion del profesor, ejemplos de código MATLAB y Python, infraestructura Docker y recursos de referencia.
 
-El objetivo es que investigadores con conocimientos básicos de MATLAB o R sean capaces de usar GitHub Copilot como agente dentro de VS Code para automatizar tareas habituales en su flujo de trabajo científico.
+El objetivo es que investigadores con conocimientos de MATLAB sean capaces de usar GitHub Copilot como agente dentro de VS Code para automatizar tareas habituales en su flujo de trabajo científico: traducción de código, documentación, control de versiones y reproducibilidad de entornos.
 
 ---
 
@@ -22,34 +22,42 @@ Al terminar la sesión, los participantes sabrán:
 
 - Usar **Copilot Chat** y el modo inline (`Ctrl+I`) dentro de VS Code
 - Traducir scripts de **MATLAB a Python** con ayuda del agente
-- Hacer su primer **commit en GitHub** usando lenguaje natural
-- Generar un **Dockerfile** y lanzar un entorno reproducible con `docker-compose`
+- Hacer **commits en GitHub** usando lenguaje natural para los mensajes
+- Lanzar un entorno reproducible con `docker compose up`
 
 ---
 
-## ⏱ Estructura de la sesión (45 min)
+## ⏱ Estructura de la sesión (~60 min)
 
 | Bloque | Duración | Contenido |
 |--------|----------|-----------|
-| 01 · Intro y contexto | 7 min | ¿Qué es un agente IA en VS Code? Chat vs Inline |
-| 02 · Copilot Chat | 10 min | Primeras demos: abrir Chat, Ctrl+I, explicar un script |
-| 03 · Casos de uso | 12 min | MATLAB→Python · Git · Docker |
-| 04 · Práctica guiada | 16 min | Los participantes en el teclado, el profesor guía |
+| 01 · Contexto y motivación | 10 min | Qué es un agente IA en VS Code, Chat vs Inline |
+| 02 · Chat e Inline en VS Code | 10 min | Primeras demos, menú @, compactar historial |
+| 03 · MATLAB en VS Code | 10 min | Extensión, F5, traducción a Python |
+| 04 · Git y GitHub | 10 min | Commit asistido, push, control de versiones |
+| 05 · Docker y reproducibilidad | 10 min | docker compose up, entornos reproducibles |
+| 06 · Práctica guiada | 10 min | Caso real: sensores de invernadero |
 
 ---
 
 ## 🛠 Requisitos previos
 
-Instala todo esto **antes de venir al curso**. No habrá tiempo para instalaciones durante la sesión.
+Instala todo esto **antes de venir al taller**. Consulta la [guía de instalación detallada](recursos/guia_instalacion.md).
 
-| Herramienta | Versión mínima | Enlace |
-|-------------|---------------|--------|
-| Visual Studio Code | 1.85+ | [Descargar](https://code.visualstudio.com) |
-| GitHub Copilot (extensión) | última | Buscar en el marketplace de VS Code |
-| Git | 2.40+ | [Descargar](https://git-scm.com) |
-| Docker Desktop | 4.25+ | [Descargar](https://www.docker.com/products/docker-desktop) |
+| Herramienta | Enlace |
+|-------------|--------|
+| Visual Studio Code | [code.visualstudio.com](https://code.visualstudio.com) |
+| Cuenta de GitHub (con Copilot activo) | [education.github.com](https://education.github.com) |
+| Git | [git-scm.com](https://git-scm.com) |
+| Docker Desktop | [docs.docker.com/desktop](https://docs.docker.com/desktop) |
+| MATLAB (si lo usas en tu investigación) | Licencia institucional |
 
-> **Nota:** Para usar GitHub Copilot necesitas una cuenta de GitHub con Copilot activo (gratuito para investigadores a través del programa GitHub Education).
+**Comprobación rápida antes del taller:**
+```bash
+git --version
+docker --version
+docker compose version
+```
 
 ---
 
@@ -57,14 +65,19 @@ Instala todo esto **antes de venir al curso**. No habrá tiempo para instalacion
 
 ```
 .
-├── README.md                  # Este archivo
-├── guion_profesor.md          # Guion detallado con tiempos y consejos
+├── README.md                        # Este archivo
+├── guion_profesor.md                # Guion detallado con tiempos y frases de clase
+├── docker-compose.yml               # Entorno reproducible para ejecutar el script Python
+├── requirements.txt                 # Dependencias Python con versiones fijadas
 ├── ejemplos/
-│   ├── script_matlab.m        # Script de ejemplo para traducir
-│   ├── script_python.py       # Resultado esperado tras traducción
-│   └── docker-compose.yml     # Ejemplo de entorno reproducible
+│   ├── invernadero.m                # Script MATLAB principal del curso (7 días de sensores)
+│   ├── dataset_invernadero.csv      # Dataset generado por invernadero.m
+│   └── script_matlab.m             # Script secundario de vibración de motor
 └── recursos/
-    └── prompts_utiles.md      # Colección de prompts para investigadores
+    ├── prompts_utiles.md            # Colección de prompts para la sesión práctica
+    ├── guia_instalacion.md          # Guía paso a paso de instalación y configuración
+    ├── presentacion_curso.html      # Presentación interactiva del curso
+    └── img/                         # Imágenes y logos
 ```
 
 ---
@@ -73,8 +86,8 @@ Instala todo esto **antes de venir al curso**. No habrá tiempo para instalacion
 
 1. **Clona el repositorio** antes de la sesión:
    ```bash
-   git clone https://github.com/TU_USUARIO/copilot-para-investigadores.git
-   cd copilot-para-investigadores
+   git clone https://github.com/ManuelMuRodriguez/Agents-for-researchers.git
+   cd Agents-for-researchers
    ```
 
 2. **Abre la carpeta en VS Code:**
@@ -82,55 +95,52 @@ Instala todo esto **antes de venir al curso**. No habrá tiempo para instalacion
    code .
    ```
 
-3. **Durante la sesión**, sigue el guion en `guion_profesor.md` o la guía en pantalla.
+3. **Abre la presentación** en `recursos/presentacion_curso.html` con tu navegador.
+
+4. **Durante la sesión**, sigue el guion en `guion_profesor.md`.
+
+---
+
+## 🧑‍🔬 Caso práctico: invernadero
+
+El ejemplo central del curso es `ejemplos/invernadero.m`: un script MATLAB que genera 7 días de datos sintéticos de sensores de invernadero (temperatura interior/exterior, humedad, CO2 y viento) con dos eventos de fallo simulados.
+
+Los participantes usan Copilot para:
+1. Entender el script con `@codebase`
+2. Traducirlo a Python (`invernadero.py`)
+3. Ejecutarlo con `docker compose up`
+4. Añadir nuevas funcionalidades (heatmaps, resumen diario, correlación)
 
 ---
 
 ## 💡 Prompts de ejemplo
 
-Aquí tienes algunos prompts de arranque para usar durante la sesión:
-
 ```
-"Traduce este script de MATLAB a Python manteniendo los mismos comentarios"
-"Explícame qué hace esta función línea a línea"
-"Genera un Dockerfile para ejecutar este script de Python"
-"Escribe el mensaje de commit para estos cambios"
-"Crea un docker-compose.yml que incluya Python 3.11 y Jupyter"
+@codebase explicame que hace este proyecto y por donde empieza la ejecucion
+
+Traduce este script de MATLAB a Python 3.
+Usa numpy para calculos, pandas para CSV y matplotlib para graficas.
+Manten la estructura de secciones y comentarios.
+
+Escribe el mensaje de commit para los cambios actuales
 ```
 
 ---
 
 ## 🧭 Chat en VS Code: `Compactar` y menú `@`
 
-### ¿Qué significa `Compactar`?
+**Compactar** resume la conversación larga del chat para quitar ruido sin tocar los archivos del proyecto. Útil cuando el historial se hace muy largo y las respuestas pierden calidad.
 
-- Resume la conversación larga para conservar lo importante y reducir ruido.
-- Mejora la velocidad y la calidad cuando el chat ya tiene mucho historial.
-- No borra ni modifica archivos del proyecto: solo compacta el contexto del chat.
+**Menú `@`** — opciones habituales en este curso:
 
-### ¿Qué es el menú `@`?
+| Opción | Cuándo usarla |
+|--------|--------------|
+| `@codebase` / `@workspace` | Entender un proyecto grande completo |
+| `@changes` | Revisar qué se ha modificado recientemente |
+| `@agent` | Tareas largas de varios pasos automatizados |
+| `@terminal` | Interactuar con la terminal desde el chat |
 
-Cuando escribes `@` en Copilot Chat, eliges una fuente de contexto o una capacidad concreta.
-Las opciones exactas dependen de las herramientas activas en tu VS Code.
-
-Opciones habituales en este curso:
-
-- `@workspace` o `@codebase`: analiza todo el proyecto.
-- `@changes`: se centra en los cambios de Git (diffs).
-- `@agent`: delega una tarea larga a un subagente.
-- `@configurePythonEnvironment`: ayuda a configurar el entorno Python.
-- `@configureNotebook`: prepara kernels de notebook.
-
-Opciones avanzadas (si hay herramientas conectadas):
-
-- `@browser`, `@clickElement`: automatización básica del navegador.
-- `@collection-schema`, `@collection-indexes`, `@aggregate`: consultas y análisis de MongoDB.
-
-Regla rápida para clase:
-
-- Usa `@codebase` para entender un proyecto grande.
-- Usa `@changes` para revisar qué se ha modificado.
-- Usa `@agent` cuando la tarea tenga varios pasos.
+Regla de oro: **primero contexto (`@codebase`), luego cambios**.
 
 ---
 
@@ -140,13 +150,3 @@ Regla rápida para clase:
 - [GitHub Education para investigadores](https://education.github.com)
 - [VS Code: guía de Copilot Chat](https://code.visualstudio.com/docs/copilot/overview)
 - [Docker para ciencia reproducible](https://docs.docker.com/guides/use-case/jupyter/)
-
----
-
-## 📄 Licencia
-
-Este material está disponible bajo licencia [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Puedes usarlo, adaptarlo y redistribuirlo citando la fuente.
-
----
-
-*Curso preparado para investigadores · Sesión 1 de N*

@@ -52,8 +52,10 @@ CO2_int(i_vent) = CO2_int(i_vent) + 700*linspace(0,1,numel(i_vent))';
 % --- 7. Guardar dataset en CSV ---
 T_tabla = table(t_dias, T_ext, T_int, H_ext, H_int, CO2_int, viento, ...
     'VariableNames', {'dia','T_ext_C','T_int_C','H_ext_pct','H_int_pct','CO2_ppm','viento_ms'});
-writetable(T_tabla, 'dataset_invernadero.csv');
-fprintf('Dataset guardado: dataset_invernadero.csv (%d filas)\n', N);
+script_dir = fileparts(mfilename('fullpath'));
+csv_path   = fullfile(script_dir, 'dataset_invernadero.csv');
+writetable(T_tabla, csv_path);
+fprintf('Dataset guardado: %s (%d filas)\n', csv_path, N);
 
 % --- 8. Figura principal: 7 días completos ---
 fig1 = figure('Name','Invernadero — visión general','Position',[50 50 1200 800]);
