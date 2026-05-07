@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="recursos/img/arm-logo-render.png" alt="Logo grupo de investigación" height="90" />
+</p>
+
 # 🤖 GitHub Copilot para Investigadores
 
 > Curso práctico de 45 minutos para aprender a usar la IA como agente dentro de Visual Studio Code.
