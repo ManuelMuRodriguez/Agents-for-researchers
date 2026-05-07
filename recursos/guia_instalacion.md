@@ -43,52 +43,94 @@ Inicia sesión en [github.com](https://github.com). Debes ver tu perfil sin prob
 
 ## 3. Git
 
-### macOS
+### Instalación
 
-Abre una terminal y ejecuta:
+**macOS** — abre la Terminal y ejecuta:
 
 ```bash
 git --version
 ```
 
-Si no está instalado, macOS te ofrecerá instalarlo automáticamente. También puedes instalar las **Xcode Command Line Tools**:
-
-```bash
-xcode-select --install
-```
-
-Alternativa con Homebrew:
+Si no está instalado, macOS te pedirá instalar las Xcode Command Line Tools automáticamente. Alternativa con Homebrew:
 
 ```bash
 brew install git
 ```
 
-### Windows
+**Windows** — descarga e instala [Git for Windows](https://git-scm.com/download/win) con las opciones por defecto. Esto incluye **Git Bash**, la terminal recomendada en Windows.
 
-Descarga el instalador desde [https://git-scm.com/download/win](https://git-scm.com/download/win) y ejecutalo con las opciones por defecto.
-
-### Linux (Debian/Ubuntu)
+**Linux (Debian/Ubuntu)**:
 
 ```bash
 sudo apt update && sudo apt install git
 ```
 
-### Configuración obligatoria tras instalar
+### Configuración de identidad
 
 ```bash
 git config --global user.name "Tu Nombre"
 git config --global user.email "tu@correo.com"
 ```
 
-### Comprobación
+Usa el mismo correo que tienes en GitHub.
+
+### Autenticación con GitHub — SSH (recomendado)
+
+GitHub ya no acepta contraseña de usuario. El método recomendado es SSH.
+
+**Paso 1 — Generar la clave:**
+
+```bash
+ssh-keygen -t ed25519 -C "tu@correo.com"
+```
+
+Pulsa Enter en todo para dejar los valores por defecto.
+
+**Paso 2 — Copiar la clave pública:**
+
+```bash
+# macOS
+pbcopy < ~/.ssh/id_ed25519.pub
+
+# Windows (Git Bash)
+cat ~/.ssh/id_ed25519.pub | clip
+
+# Linux
+cat ~/.ssh/id_ed25519.pub
+```
+
+**Paso 3 — Añadirla a GitHub:**
+
+Ve a **GitHub → Settings → SSH and GPG keys → New SSH Key**, ponle un nombre (ej. "Mi portátil") y pega la clave.
+
+**Paso 4 — Probar la conexión:**
+
+```bash
+ssh -T git@github.com
+```
+
+Respuesta correcta: `Hi [tu-usuario]! You've successfully authenticated`
+
+### Alternativa: GitHub CLI (más fácil, sin llaves manuales)
+
+```bash
+# macOS
+brew install gh
+
+# Windows
+winget install --id GitHub.cli
+```
+
+Luego ejecuta `gh auth login` y sigue las instrucciones en el navegador.
+
+### Comprobación final
 
 ```bash
 git --version
 git config --global user.name
 git config --global user.email
+ssh -T git@github.com
 ```
-
-Los tres comandos deben devolver valores sin errores.
 
 ---
 
