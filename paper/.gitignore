@@ -1,0 +1,19 @@
+# Archivos auxiliares generados por LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# El PDF sí se sube (resultado final)
+# Si prefieres no subirlo, descomenta la línea siguiente:
+# *.pdf
