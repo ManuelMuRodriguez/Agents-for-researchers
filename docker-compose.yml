@@ -1,0 +1,20 @@
+# Define los servicios (contenedores) que se pueden lanzar con Docker Compose.
+services:
+  # Nombre del servicio. Aquí representa la ejecución del ejemplo del invernadero.
+  invernadero:
+    # Imagen base de Python que usará el contenedor.
+    image: python:3.11-slim
+    # Carpeta de trabajo dentro del contenedor (equivale al "cd" inicial).
+    working_dir: /workspace
+    # Monta la carpeta actual del proyecto (host) dentro de /workspace (contenedor).
+    # Así, el contenedor ve y ejecuta tus archivos locales.
+    volumes:
+      - .:/workspace
+    # Comando que se ejecuta al arrancar el servicio.
+    # 1) Si existe requirements.txt, instala dependencias.
+    # 2) Ejecuta el script Python del ejemplo.
+    command: >
+      sh -lc "
+      if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi &&
+      python ejemplos/invernadero.py
+      "

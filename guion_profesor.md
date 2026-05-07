@@ -43,6 +43,17 @@
 2. Escribe: `@workspace explícame qué hace este proyecto`
 3. Muestra la respuesta y señala que **conoce todos los ficheros**
 
+### Mini demo — `Compactar` y menú `@` (2 min)
+
+1. Escribe `@` en el chat y enseña que aparecen capacidades/fuentes de contexto
+2. Explica regla rápida:
+   - `@codebase` para entender un proyecto grande
+   - `@changes` para revisar qué se ha modificado
+   - `@agent` para tareas largas con varios pasos
+3. Explica `Compactar` en una frase: resume historial del chat para mantener contexto útil sin ruido
+
+> 💡 **Mensaje clave:** *"Compactar no toca tus archivos, solo limpia el contexto de conversación."*
+
 ### Demo 2 — Inline con `Ctrl+I` (3 min)
 
 1. Abre `script_matlab.m`

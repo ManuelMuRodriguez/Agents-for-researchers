@@ -68,6 +68,12 @@ Escribe un mensaje de commit para los cambios que acabo de hacer
 ## Reproducibilidad
 
 ```
+Genera un docker-compose.yml mínimo para este proyecto con un único servicio.
+Debe usar python:3.11-slim, montar la carpeta actual en /workspace,
+instalar requirements.txt si existe y ejecutar ejemplos/invernadero.py.
+No añadas Jupyter ni variables de entorno.
+```
+```
 Genera un Dockerfile para ejecutar este script con Python 3.11
 ```
 ```
@@ -89,4 +95,28 @@ Refactoriza esta función para que sea más legible sin cambiar su comportamient
 ```
 ```
 ¿Hay algún caso límite que este código no maneje correctamente?
+```
+
+---
+
+## Funcionalidades seleccionadas (para pegar sobre invernadero.m)
+
+```
+Añade mapas de calor (heatmaps) por hora del día vs día de la semana
+para T_int_C, H_int_pct y CO2_ppm.
+Usa una figura con 3 subplots (uno por variable), colorbar en cada subplot
+y títulos listos para una presentación.
+```
+
+```
+Calcula un resumen diario de métricas para todos los sensores
+(T_ext_C, T_int_C, H_ext_pct, H_int_pct, CO2_ppm, viento_ms):
+mínimo, máximo y media por día.
+Guárdalo en resumen_diario_invernadero.csv.
+```
+
+```
+Calcula la matriz de correlación de Pearson entre todos los sensores
+y muéstrala como tabla y también como heatmap con etiquetas legibles.
+Además, guarda la matriz en correlacion_sensores.csv.
 ```

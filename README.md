@@ -96,6 +96,40 @@ Aquí tienes algunos prompts de arranque para usar durante la sesión:
 
 ---
 
+## 🧭 Chat en VS Code: `Compactar` y menú `@`
+
+### ¿Qué significa `Compactar`?
+
+- Resume la conversación larga para conservar lo importante y reducir ruido.
+- Mejora la velocidad y la calidad cuando el chat ya tiene mucho historial.
+- No borra ni modifica archivos del proyecto: solo compacta el contexto del chat.
+
+### ¿Qué es el menú `@`?
+
+Cuando escribes `@` en Copilot Chat, eliges una fuente de contexto o una capacidad concreta.
+Las opciones exactas dependen de las herramientas activas en tu VS Code.
+
+Opciones habituales en este curso:
+
+- `@workspace` o `@codebase`: analiza todo el proyecto.
+- `@changes`: se centra en los cambios de Git (diffs).
+- `@agent`: delega una tarea larga a un subagente.
+- `@configurePythonEnvironment`: ayuda a configurar el entorno Python.
+- `@configureNotebook`: prepara kernels de notebook.
+
+Opciones avanzadas (si hay herramientas conectadas):
+
+- `@browser`, `@clickElement`: automatización básica del navegador.
+- `@collection-schema`, `@collection-indexes`, `@aggregate`: consultas y análisis de MongoDB.
+
+Regla rápida para clase:
+
+- Usa `@codebase` para entender un proyecto grande.
+- Usa `@changes` para revisar qué se ha modificado.
+- Usa `@agent` cuando la tarea tenga varios pasos.
+
+---
+
 ## 📚 Recursos para seguir
 
 - [Documentación oficial de GitHub Copilot](https://docs.github.com/en/copilot)
