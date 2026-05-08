@@ -1,0 +1,9 @@
+services:
+  invernadero:
+    image: python:3.11-slim
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: >
+      sh -c "pip install --no-cache-dir -r requirements.txt &&
+             python invernadero.py"
