@@ -70,12 +70,15 @@ docker compose version
 ├── copilot_investigadores_v2.pptx         # Presentación PowerPoint del curso
 │
 ├── Ejercicios/
-│   ├── Ejer1/                             # Ejercicio principal — sensores de invernadero
+│   ├── Ejer1/                             # Ejercicio 1 — traducción MATLAB → Python
 │   │   ├── invernadero.m                  # Script MATLAB: genera 7 días de datos sintéticos
 │   │   ├── dataset_invernadero.csv        # Dataset generado por invernadero.m
 │   │   ├── docker-compose.yml             # Entorno reproducible (Python 3.11-slim)
 │   │   └── requirements.txt              # Dependencias Python con versiones fijadas
-│   └── Ejer2/                             # Ejercicio avanzado — identificación de sistemas
+│   ├── Ejer2/                             # Ejercicio 2 — dashboard HTML con datos reales
+│   │   ├── dataset_invernadero.csv        # Dataset de sensores (7 días, muestreo 15 min)
+│   │   └── dashboard_invernadero.html     # Dashboard generado por Copilot (dark-mode, Chart.js)
+│   └── Ejer3/                             # Ejercicio 3 — identificación de modelo ARX
 │       ├── Identifica_ARX_221.m           # Modelo ARX real: T. interior ← radiación, viento, ventilación
 │       ├── 2020_11_15.mat                 # Datos reales de entrenamiento (15-Nov-2020)
 │       └── 2020_11_16.mat                 # Datos reales de validación (16-Nov-2020)
@@ -115,7 +118,7 @@ docker compose version
 
 ---
 
-## 🧑‍🔬 Ejercicio 1 — Sensores de invernadero
+## 🧑‍🔬 Ejercicio 1 — Traducción MATLAB → Python
 
 El ejemplo central del curso es `Ejercicios/Ejer1/invernadero.m`: un script MATLAB que genera 7 días de datos sintéticos de sensores de invernadero (temperatura interior/exterior, humedad, CO₂ y viento) con dos eventos de fallo simulados.
 
@@ -123,15 +126,21 @@ Los participantes usan Copilot para:
 1. Entender el script con `@workspace`
 2. Traducirlo a Python (`invernadero.py`)
 3. Ejecutarlo con `docker compose up` desde `Ejercicios/Ejer1/`
-4. Añadir nuevas funcionalidades (heatmaps, resumen diario, correlación, dashboard HTML)
+4. Añadir nuevas funcionalidades (heatmaps, resumen diario, correlación)
 
 ---
 
-## 🔬 Ejercicio 2 — Identificación de sistemas (ARX)
+## 📊 Ejercicio 2 — Dashboard HTML con datos reales
 
-`Ejercicios/Ejer2/Identifica_ARX_221.m` trabaja con datos reales de un invernadero (noviembre 2020). Identifica un modelo ARX de orden 221 que predice la **temperatura interior** a partir de radiación solar, apertura de ventilación y velocidad del viento, y lo valida con datos del día siguiente.
+`Ejercicios/Ejer2/` contiene únicamente el CSV de sensores. Los participantes usan Copilot para generar `dashboard_invernadero.html` desde cero: un dashboard dark-mode autocontenido con 4 cards de resumen (últimas 24 h) y 4 gráficas temporales (Chart.js desde CDN), sin instalar nada.
 
-Ideal para mostrar cómo Copilot ayuda a entender y traducir código de ingeniería de control avanzado.
+---
+
+## 🔬 Ejercicio 3 — Identificación de modelo ARX
+
+`Ejercicios/Ejer3/` contiene solo los dos archivos `.mat` con datos reales de un invernadero (noviembre 2020). Los participantes usan Copilot para generar `Identifica_ARX_221.m` desde cero: identifica un modelo ARX de orden 221 que predice la **temperatura interior** a partir de radiación solar, apertura de ventilación y velocidad del viento, y lo valida con datos del día siguiente.
+
+Ideal para mostrar cómo Copilot ayuda a generar código de ingeniería de control avanzado partiendo solo de los datos.
 
 ---
 

@@ -1,7 +1,0 @@
-services:
-  latex:
-    image: texlive/texlive:latest
-    working_dir: /paper
-    volumes:
-      - .:/paper
-    command: latexmk -pdf -interaction=nonstopmode -file-line-error main.tex

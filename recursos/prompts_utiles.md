@@ -70,7 +70,7 @@ Escribe un mensaje de commit para los cambios que acabo de hacer
 ```
 Genera un docker-compose.yml mínimo para este proyecto con un único servicio.
 Debe usar python:3.11-slim, montar la carpeta actual en /workspace,
-instalar requirements.txt si existe y ejecutar ejemplos/invernadero.py.
+instalar requirements.txt si existe y ejecutar Ejercicios/Ejer1/invernadero.py.
 No añadas Jupyter ni variables de entorno.
 ```
 ```
@@ -123,41 +123,46 @@ Además, guarda la matriz en correlacion_sensores.csv.
 
 ---
 
-## ⭐ Ejercicio en clase — Identificación de modelo ARX (Ejer2)
+## ⭐ Ejercicio en clase — Docker para reproducibilidad (Ejer1b)
 
-> **Para el profesor:** los alumnos solo necesitan la carpeta `Ejercicios/Ejer2/` con los dos `.mat` dentro.
-> Sin ningún archivo de código, piden al agente que lo genere desde cero. El resultado es el `Identifica_ARX_221.m` del repo.
+> **Para el profesor:** una vez que los alumnos tienen `invernadero.py` generado (Ejer1),
+> piden a Copilot que cree el entorno reproducible con Docker.
+> El resultado es un `docker-compose.yml` funcional que ejecuta el script sin instalar Python localmente.
 
 ```
-En esta carpeta hay varios archivos .mat que contienen datos reales de invernadero.
-Las variables de interés son XTINV, que es la temperatura interior del invernadero,
-PRAD, la radiación solar, PVV, la velocidad del viento, y UVENT_cen, la apertura de ventilación.
+Tengo el archivo invernadero.py en la carpeta Ejercicios/Ejer1/ y un requirements.txt
+con las dependencias necesarias.
 
-Me gustaría crear un código de MATLAB que cargue los datos del archivo "2020_11_15.mat"
-y los utilizase para obtener un modelo ARX de orden 221 para simular como salida
-la temperatura del invernadero considerando como entradas la radiación, la apertura de ventilación
-y la velocidad del viento.
+Genera un docker-compose.yml mínimo para ejecutar este script con un único servicio.
+Debe:
+- Usar la imagen python:3.11-slim
+- Montar la carpeta Ejercicios/Ejer1/ como /workspace dentro del contenedor
+- Instalar requirements.txt si existe (pip install --no-cache-dir)
+- Ejecutar invernadero.py al arrancar
 
-Una vez obtenido, me gustaría validar los resultados con los datos del archivo "2020_11_16.mat".
+No añadas Jupyter ni variables de entorno innecesarias.
 
-El tiempo de muestreo de los datos se debe definir en una variable Ts=30 y en base a esto
-crear un vector de tiempo T considerando la longitud de los vectores datos anteriormente mencionados.
+Además, el script usa matplotlib para mostrar gráficas. Como Docker no tiene pantalla,
+añade matplotlib.use('Agg') justo después de importar matplotlib y guarda cada figura
+como PNG en la misma carpeta antes de plt.show().
+
+Una vez generado el fichero, lanza el contenedor con docker compose up.
 ```
 
 ---
 
-## ⭐ Ejercicio en clase — Dashboard HTML con datos reales
+## ⭐ Ejercicio en clase — Dashboard HTML con datos reales (Ejer2)
 
-> **Para el profesor:** di a los alumnos que abran el Chat de Copilot con el archivo
-> `dataset_invernadero.csv` visible en el editor y que peguen este prompt.
+> **Para el profesor:** los alumnos abren la carpeta `Ejercicios/Ejer2/` que contiene solo
+> `dataset_invernadero.csv`. Pegan este prompt con el CSV visible en el editor.
 > En 1–2 minutos tendrán un dashboard funcional sin instalar nada.
 
 ```
-Tengo el archivo ejemplos/dataset_invernadero.csv con columnas:
+Tengo el archivo Ejercicios/Ejer2/dataset_invernadero.csv con columnas:
 dia, T_ext_C, T_int_C, H_ext_pct, H_int_pct, CO2_ppm, viento_ms
 (7 días de sensores de invernadero, muestreo cada 15 min).
 
-Crea un archivo ejemplos/dashboard_invernadero.html autocontenido
+Crea un archivo Ejercicios/Ejer2/dashboard_invernadero.html autocontenido
 (sin servidor, sin dependencias locales) que muestre:
 
 1. CARDS de resumen con los valores de las últimas 24 horas:
@@ -175,3 +180,39 @@ Diseño dark-mode. Usa Chart.js desde CDN.
 Incrusta los datos del CSV directamente en el HTML como arrays JavaScript
 (no necesito leer el CSV en tiempo de ejecución).
 ```
+
+---
+
+## ⭐ Ejercicio en clase — Identificación de modelo ARX (Ejer3)
+
+> **Para el profesor:** los alumnos abren la carpeta `Ejercicios/Ejer3/` — solo contiene
+> los dos `.mat`, sin código. El agente genera el script completo desde cero.
+>
+> ⚠️ **Toolbox:** `iddata()` y `arx()` requieren el **System Identification Toolbox** (licencia adicional).
+> El prompt ya incluye la instrucción de usar mínimos cuadrados si no está disponible.
+>
+> 💡 **Directorio de trabajo:** `cd(fileparts(mfilename('fullpath')))` evita que MATLAB
+> no encuentre los `.mat` al ejecutar desde VS Code o desde otra carpeta.
+
+```
+En esta carpeta hay varios archivos .mat que contienen datos reales de invernadero.
+Las variables de interés son XTINV, que es la temperatura interior del invernadero,
+PRAD, la radiación solar, PVV, la velocidad del viento, y UVENT_cen, la apertura de ventilación.
+
+Me gustaría crear un código de MATLAB que cargue los datos del archivo "2020_11_15.mat"
+y los utilizase para obtener un modelo ARX de orden 221 para simular como salida
+la temperatura del invernadero considerando como entradas la radiación, la apertura de ventilación
+y la velocidad del viento.
+
+Una vez obtenido, me gustaría validar los resultados con los datos del archivo "2020_11_16.mat".
+
+El tiempo de muestreo de los datos se debe definir en una variable Ts=30 y en base a esto
+crear un vector de tiempo T considerando la longitud de los vectores datos anteriormente mencionados.
+
+Al inicio del script añade cd(fileparts(mfilename('fullpath'))) para que MATLAB
+encuentre los archivos .mat independientemente del directorio de trabajo.
+
+Si no tengo el System Identification Toolbox, implementa el modelo ARX usando
+mínimos cuadrados ordinarios con operaciones de matrices (sin iddata ni arx).
+```
+

@@ -196,3 +196,31 @@ code --version
 ```
 
 Todos deben devolver un número de versión. Si alguno falla, revisa la sección correspondiente o escribe antes del taller.
+
+---
+
+## 6. Clonar el repositorio del curso
+
+Una vez en el taller, el primer paso práctico es descargar todos los materiales con Git.
+
+### Pasos
+
+1. Abre la terminal (en VS Code: `Ctrl+ö` en Windows/Linux, `Ctrl+ñ` en macOS, o menú **Terminal → New Terminal**)
+
+2. Ejecuta:
+
+```bash
+git clone https://github.com/ManuelMuRodriguez/Agents-for-researchers.git
+cd Agents-for-researchers
+code .
+```
+
+3. VS Code se reabrirá con la carpeta del proyecto. A partir de aquí el agente puede leer todos los archivos con `@workspace`.
+
+### ¿Por qué clonar y no descargar el ZIP?
+
+Clonar mantiene el historial de Git. Así, durante el taller podrás hacer commits con mensajes generados por Copilot y ver en directo el flujo completo de control de versiones.
+
+### Comprobación
+
+Después del clone, en la terminal deberías ver la carpeta `Agents-for-researchers/` y al ejecutar `git log --oneline` aparecerá el historial de commits del repositorio.
