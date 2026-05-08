@@ -936,6 +936,32 @@ code .</div>
       </div>
     </section>
 
+    <!-- 12 · Practica guiada -->
+    <section class="slide">
+      <h2>Practica guiada</h2>
+      <div class="callout">Caso real: sensores de un invernadero — 7 dias de temperatura, humedad, CO2 y viento con eventos de fallo simulados.</div>
+      <div class="grid3">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🔭</div>
+          <div style="font-size:1.3rem;font-weight:800;color:var(--accent-2);margin-bottom:6px;">A</div>
+          <strong>Explorar el proyecto</strong>
+          <p class="muted">Usa @codebase para entender la estructura y que hace invernadero.m</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🔄</div>
+          <div style="font-size:1.3rem;font-weight:800;color:var(--warn);margin-bottom:6px;">B</div>
+          <strong>Traducir a Python</strong>
+          <p class="muted">Prompt guiado para generar invernadero.py con numpy, pandas y matplotlib</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2rem;margin-bottom:8px;">🐳</div>
+          <div style="font-size:1.3rem;font-weight:800;color:var(--accent);margin-bottom:6px;">C</div>
+          <strong>Lanzar con Docker</strong>
+          <p class="muted">Ejecutar el script generado con docker compose up en entorno reproducible</p>
+        </div>
+      </div>
+    </section>
+
     <!-- 10 · Demo traduccion -->
     <section class="slide">
       <h2>Demo principal: traducir MATLAB a Python</h2>
@@ -979,29 +1005,26 @@ Manten la estructura de secciones y comentarios.</div>
       <div class="code" style="margin-top:14px;">docker compose up</div>
     </section>
 
-    <!-- 12 · Practica guiada -->
+    <!-- 13b · Sub-ejercicio 1b — Docker -->
     <section class="slide">
-      <h2>Practica guiada</h2>
-      <div class="callout">Caso real: sensores de un invernadero — 7 dias de temperatura, humedad, CO2 y viento con eventos de fallo simulados.</div>
-      <div class="grid3">
-        <div class="card" style="text-align:center;">
-          <div style="font-size:2rem;margin-bottom:8px;">🔭</div>
-          <div style="font-size:1.3rem;font-weight:800;color:var(--accent-2);margin-bottom:6px;">A</div>
-          <strong>Explorar el proyecto</strong>
-          <p class="muted">Usa @codebase para entender la estructura y que hace invernadero.m</p>
-        </div>
-        <div class="card" style="text-align:center;">
-          <div style="font-size:2rem;margin-bottom:8px;">🔄</div>
-          <div style="font-size:1.3rem;font-weight:800;color:var(--warn);margin-bottom:6px;">B</div>
-          <strong>Traducir a Python</strong>
-          <p class="muted">Prompt guiado para generar invernadero.py con numpy, pandas y matplotlib</p>
-        </div>
-        <div class="card" style="text-align:center;">
-          <div style="font-size:2rem;margin-bottom:8px;">🐳</div>
-          <div style="font-size:1.3rem;font-weight:800;color:var(--accent);margin-bottom:6px;">C</div>
-          <strong>Lanzar con Docker</strong>
-          <p class="muted">Ejecutar el script generado con docker compose up en entorno reproducible</p>
-        </div>
+      <h2>Sub-ejercicio 1b: Docker para invernadero.py</h2>
+      <div class="callout" style="font-style:italic;">Ya tienes <strong>invernadero.py</strong> y <strong>requirements.txt</strong>. Pide a Copilot que cree el entorno reproducible:</div>
+      <div class="code">Tengo invernadero.py en Ejercicios/Ejer1/ y un requirements.txt.
+
+Genera un docker-compose.yml minimo con un unico servicio que:
+- Use python:3.11-slim
+- Monte Ejercicios/Ejer1/ como /workspace
+- Instale requirements.txt si existe
+- Ejecute invernadero.py al arrancar
+
+Sin Jupyter ni variables de entorno innecesarias.
+
+El script usa matplotlib: añade matplotlib.use('Agg') y guarda
+cada figura como PNG antes de plt.show().
+
+Una vez generado el fichero, lanza el contenedor con docker compose up.</div>
+      <div style="margin-top:10px;padding:10px 16px;background:#091929;border:1px solid #28446b;border-radius:10px;text-align:center;color:var(--muted);">
+        Resultado: <strong style="color:var(--accent);">docker-compose.yml</strong> listo — ejecuta con <code style="color:var(--teal);">docker compose up</code>
       </div>
     </section>
 
@@ -1024,29 +1047,6 @@ Manten la estructura de secciones y comentarios.</div>
           <p>Matriz de correlacion de Pearson entre todos los sensores del invernadero.</p>
           <p class="muted" style="font-size:0.9rem;margin-top:6px;">Tabla + heatmap + <strong>correlacion_sensores.csv</strong></p>
         </div>
-      </div>
-    </section>
-
-    <!-- 13b · Sub-ejercicio 1b — Docker -->
-    <section class="slide">
-      <h2>Sub-ejercicio 1b: Docker para invernadero.py</h2>
-      <div class="callout" style="font-style:italic;">Ya tienes <strong>invernadero.py</strong> y <strong>requirements.txt</strong>. Pide a Copilot que cree el entorno reproducible:</div>
-      <div class="code">Tengo invernadero.py en Ejercicios/Ejer1/ y un requirements.txt.
-
-Genera un docker-compose.yml minimo con un unico servicio que:
-- Use python:3.11-slim
-- Monte Ejercicios/Ejer1/ como /workspace
-- Instale requirements.txt si existe
-- Ejecute invernadero.py al arrancar
-
-Sin Jupyter ni variables de entorno innecesarias.
-
-El script usa matplotlib: añade matplotlib.use('Agg') y guarda
-cada figura como PNG antes de plt.show().
-
-Una vez generado el fichero, lanza el contenedor con docker compose up.</div>
-      <div style="margin-top:10px;padding:10px 16px;background:#091929;border:1px solid #28446b;border-radius:10px;text-align:center;color:var(--muted);">
-        Resultado: <strong style="color:var(--accent);">docker-compose.yml</strong> listo — ejecuta con <code style="color:var(--teal);">docker compose up</code>
       </div>
     </section>
 
