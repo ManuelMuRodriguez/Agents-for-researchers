@@ -4,6 +4,4 @@ services:
     working_dir: /paper
     volumes:
       - .:/paper
-    command: >
-      sh -c "latexmk -pdf -interaction=nonstopmode -file-line-error main.tex
-             && echo '✅ PDF generado: main.pdf'"
+    command: latexmk -pdf -interaction=nonstopmode -file-line-error main.tex

@@ -65,19 +65,32 @@ docker compose version
 
 ```
 .
-├── README.md                        # Este archivo
-├── guion_profesor.md                # Guion detallado con tiempos y frases de clase
-├── docker-compose.yml               # Entorno reproducible para ejecutar el script Python
-├── requirements.txt                 # Dependencias Python con versiones fijadas
-├── ejemplos/
-│   ├── invernadero.m                # Script MATLAB principal del curso (7 días de sensores)
-│   ├── dataset_invernadero.csv      # Dataset generado por invernadero.m
-│   └── script_matlab.m             # Script secundario de vibración de motor
+├── README.md                              # Este archivo
+├── guion_profesor.md                      # Guion detallado con tiempos y frases de clase
+├── copilot_investigadores_v2.pptx         # Presentación PowerPoint del curso
+│
+├── Ejercicios/
+│   ├── Ejer1/                             # Ejercicio principal — sensores de invernadero
+│   │   ├── invernadero.m                  # Script MATLAB: genera 7 días de datos sintéticos
+│   │   ├── dataset_invernadero.csv        # Dataset generado por invernadero.m
+│   │   ├── docker-compose.yml             # Entorno reproducible (Python 3.11-slim)
+│   │   └── requirements.txt              # Dependencias Python con versiones fijadas
+│   └── Ejer2/                             # Ejercicio avanzado — identificación de sistemas
+│       ├── Identifica_ARX_221.m           # Modelo ARX real: T. interior ← radiación, viento, ventilación
+│       ├── 2020_11_15.mat                 # Datos reales de entrenamiento (15-Nov-2020)
+│       └── 2020_11_16.mat                 # Datos reales de validación (16-Nov-2020)
+│
+├── paper/
+│   ├── main.tex                           # Template LaTeX Elsevier (elsarticle)
+│   ├── main.pdf                           # PDF compilado
+│   ├── referencias.bib                    # Bibliografía BibTeX de ejemplo
+│   └── figuras/                           # Carpeta para figuras del paper
+│
 └── recursos/
-    ├── prompts_utiles.md            # Colección de prompts para la sesión práctica
-    ├── guia_instalacion.md          # Guía paso a paso de instalación y configuración
-    ├── presentacion_curso.html      # Presentación interactiva del curso
-    └── img/                         # Imágenes y logos
+    ├── prompts_utiles.md                  # Colección de prompts para la sesión práctica
+    ├── guia_instalacion.md                # Guía paso a paso de instalación y configuración
+    ├── presentacion_curso.html            # Presentación interactiva del curso (HTML)
+    └── img/                               # Imágenes y logos
 ```
 
 ---
@@ -95,28 +108,37 @@ docker compose version
    code .
    ```
 
-3. **Abre la presentación** en `recursos/presentacion_curso.html` con tu navegador.
+3. **Abre la presentación** en `recursos/presentacion_curso.html` con tu navegador
+   o la versión PowerPoint `copilot_investigadores_v2.pptx`.
 
 4. **Durante la sesión**, sigue el guion en `guion_profesor.md`.
 
 ---
 
-## 🧑‍🔬 Caso práctico: invernadero
+## 🧑‍🔬 Ejercicio 1 — Sensores de invernadero
 
-El ejemplo central del curso es `ejemplos/invernadero.m`: un script MATLAB que genera 7 días de datos sintéticos de sensores de invernadero (temperatura interior/exterior, humedad, CO2 y viento) con dos eventos de fallo simulados.
+El ejemplo central del curso es `Ejercicios/Ejer1/invernadero.m`: un script MATLAB que genera 7 días de datos sintéticos de sensores de invernadero (temperatura interior/exterior, humedad, CO₂ y viento) con dos eventos de fallo simulados.
 
 Los participantes usan Copilot para:
-1. Entender el script con `@codebase`
+1. Entender el script con `@workspace`
 2. Traducirlo a Python (`invernadero.py`)
-3. Ejecutarlo con `docker compose up`
-4. Añadir nuevas funcionalidades (heatmaps, resumen diario, correlación)
+3. Ejecutarlo con `docker compose up` desde `Ejercicios/Ejer1/`
+4. Añadir nuevas funcionalidades (heatmaps, resumen diario, correlación, dashboard HTML)
+
+---
+
+## 🔬 Ejercicio 2 — Identificación de sistemas (ARX)
+
+`Ejercicios/Ejer2/Identifica_ARX_221.m` trabaja con datos reales de un invernadero (noviembre 2020). Identifica un modelo ARX de orden 221 que predice la **temperatura interior** a partir de radiación solar, apertura de ventilación y velocidad del viento, y lo valida con datos del día siguiente.
+
+Ideal para mostrar cómo Copilot ayuda a entender y traducir código de ingeniería de control avanzado.
 
 ---
 
 ## 💡 Prompts de ejemplo
 
 ```
-@codebase explicame que hace este proyecto y por donde empieza la ejecucion
+@workspace explícame qué hace este proyecto y por dónde empieza la ejecución
 
 Traduce este script de MATLAB a Python 3.
 Usa numpy para calculos, pandas para CSV y matplotlib para graficas.
