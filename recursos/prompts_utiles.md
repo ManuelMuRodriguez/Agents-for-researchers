@@ -4,13 +4,27 @@ Colección de prompts probados para usar con GitHub Copilot en VS Code.
 
 ---
 
-## Entender un proyecto existente
+## ⭐ Ejercicio en clase — Explorar el proyecto con Copilot (Ejer0)
 
-Antes de tocar nada, pide a Copilot que te oriente. Especialmente útil cuando el proyecto tiene muchos archivos o lleva tiempo sin tocarse.
+> **Para el profesor:** ejercicio de calentamiento. Los alumnos abren la carpeta del proyecto
+> en VS Code y usan `@workspace` para orientarse antes de tocar ningún archivo.
+> Ideal para practicar la lectura asistida de un proyecto desconocido.
 
 ```
 @workspace Explícame qué hace este proyecto: qué problema resuelve, cómo está organizado y cuáles son los archivos más importantes.
 ```
+
+Una vez respondido, pide el registro de la exploración:
+
+```
+@workspace Genera un breve cuaderno de bitácora en formato Markdown que resuma:
+- Qué archivos existen y para qué sirven
+- Las dependencias externas encontradas
+- El flujo de ejecución principal
+Guárdalo como recursos/bitacora_ejer0.md
+```
+
+**Prompts adicionales de exploración:**
 ```
 @workspace ¿Cuál es el flujo principal del código? ¿Por dónde empieza la ejecución y qué pasos sigue?
 ```
@@ -38,7 +52,13 @@ Convierte esta función de R a Python usando numpy/pandas donde sea equivalente
 Explícame este script línea a línea como si no supiera [MATLAB/R/Python]
 ```
 
-### Ejercicio guiado — invernadero.m → Python
+---
+
+## ⭐ Ejercicio en clase — Traducir invernadero.m a Python (Ejer1a)
+
+> **Para el profesor:** los alumnos abren `Ejercicios/Ejer1/invernadero.m` en el editor
+> y pegan el prompt en el Chat de Copilot (modo **Agent**).
+> El agente genera `invernadero.py` y al final crea el cuaderno de bitácora.
 
 Abre `invernadero.m` y escribe este prompt en el Chat:
 
@@ -47,6 +67,13 @@ Traduce este script de MATLAB a Python 3.
 Usa numpy para los cálculos numéricos, pandas para guardar el CSV
 y matplotlib para todas las gráficas.
 Mantén la misma estructura de secciones y los mismos comentarios.
+
+Al terminar, crea el archivo Ejercicios/Ejer1/bitacora_ejer1a.md con un cuaderno de bitácora
+que incluya:
+- Fecha de generación
+- Qué hace el script original y el traducido
+- Decisiones de traducción (equivalencias MATLAB → Python usadas)
+- Librerías Python necesarias
 ```
 
 ---
@@ -147,6 +174,12 @@ añade matplotlib.use('Agg') justo después de importar matplotlib y guarda cada
 como PNG en la misma carpeta antes de plt.show().
 
 Una vez generado el fichero, lanza el contenedor con docker compose up.
+
+Al terminar, crea Ejercicios/Ejer1/bitacora_ejer1b.md con un cuaderno de bitácora que incluya:
+- Archivos creados o modificados y por qué
+- Imagen Docker elegida y motivo
+- Cambios realizados en invernadero.py para el modo headless
+- Comando para reproducir el entorno
 ```
 
 ---
@@ -179,6 +212,11 @@ Crea un archivo Ejercicios/Ejer2/dashboard_invernadero.html autocontenido
 Diseño dark-mode. Usa Chart.js desde CDN.
 Incrusta los datos del CSV directamente en el HTML como arrays JavaScript
 (no necesito leer el CSV en tiempo de ejecución).
+
+Al terminar, crea Ejercicios/Ejer2/bitacora_ejer2.md con un cuaderno de bitácora que incluya:
+- Archivos generados
+- Componentes del dashboard y datos que muestra cada uno
+- Decisiones de diseño (colores, umbrales de alerta, librería)
 ```
 
 ---
@@ -214,5 +252,11 @@ encuentre los archivos .mat independientemente del directorio de trabajo.
 
 Si no tengo el System Identification Toolbox, implementa el modelo ARX usando
 mínimos cuadrados ordinarios con operaciones de matrices (sin iddata ni arx).
+
+Al terminar, crea Ejercicios/Ejer3/bitacora_ejer3.md con un cuaderno de bitácora que incluya:
+- Archivos .mat utilizados y variables extraídas
+- Estructura del modelo ARX (orden, entradas, salida)
+- Estrategia de identificación y validación aplicada
+- Métricas de calidad del modelo (RMSE, FIT u otras)
 ```
 
